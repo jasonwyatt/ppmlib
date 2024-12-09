@@ -2,4 +2,5 @@
 compile_commands.json
 bazel-*
 .DS_Store
+external/
 
