@@ -1,5 +1,8 @@
+module(
+    name = "ppmlib",
+    version = "0.1.0",
+)
 
-bazel_dep(name = "googletest", version = "1.15.2")
 bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
 
 git_override(
