@@ -9,7 +9,7 @@ int main(int argc, const char** argv) {
         for (int j = 0; j < 256; j++) {
             p.setPixel(
                 j, i,
-                i, j, 255
+                i, j, 0
             );
         }
     }

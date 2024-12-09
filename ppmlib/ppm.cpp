@@ -31,9 +31,9 @@ void PPM::setPixel(size_t x, size_t y, uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void PPM::getPixel(size_t x, size_t y, uint8_t* out) {
-    for (size_t i = 0; i < 3; i++) {
-        out[i] = mData[y * (mWidth * 3) + x * 3 + i];
-    }
+    out[0] = mData[y * (mWidth * 3) + x * 3 + 0];
+    out[1] = mData[y * (mWidth * 3) + x * 3 + 1];
+    out[2] = mData[y * (mWidth * 3) + x * 3 + 2];
 }
 
 void PPM::writeToFile(const char* fileName) {
@@ -45,6 +45,20 @@ void PPM::writeToFile(const char* fileName) {
 }
 
 PPM PPM::loadFromFile(const char* fileName) {
-    return PPM(640, 480);
+    std::ifstream in(fileName, std::ios::binary);
+    std::string type;
+    size_t width;
+    size_t height;
+    uint16_t maxVal;
+    std::string img;
+
+    in >> type;
+    in >> width;
+    in >> height;
+    in >> maxVal;
+
+    PPM result(width, height);
+    in.read((char*) result.mData, sizeof(uint8_t) * width * height * 3);
+    return result;
 }
 
